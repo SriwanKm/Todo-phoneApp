@@ -1,29 +1,39 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+} from 'react-native';
 
-const TodoItem = ({item, DeleteHandler}) => {
+const TodoItem = ({item, DeleteHandler, CompleteHandler}) => {
     return (
-        <View style={styles.itemContainer}>
-            <Text style={styles.textItem}>{item.text}</Text>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.buttonComplete}>
-                    <Text style={styles.buttonText}>Completed</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.buttonDelete}
-                    onPress={() => DeleteHandler(item.key)}>
-                    <Text style={styles.buttonText}>Delete</Text>
-                </TouchableOpacity>
+        <TouchableWithoutFeedback>
+            <View style={styles.itemContainer}>
+                <Text style={item.isCompleted ? styles.textItemCompleted : styles.textItem}>{item.text}</Text>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.buttonComplete}
+                                      onPress={() => CompleteHandler(item.isCompleted, item.key)}
+                    >
+                        <Text style={styles.buttonText}>{item.isCompleted ? "Incomplete" : "Completed"}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.buttonDelete}
+                        onPress={() => DeleteHandler(item.key)}>
+                        <Text style={styles.buttonText}>Delete</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 
 const styles = StyleSheet.create({
     itemContainer: {
-        backgroundColor: '#ebcccc',
+        // backgroundColor: '#ebcccc',
+        backgroundColor: '#d2d1d1',
         width: '100%',
-        height: 150,
         paddingVertical: 25,
         paddingHorizontal: 15,
         borderRadius: 2,
@@ -36,11 +46,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
-
     textItem: {
         fontSize: 18,
         textAlign: 'center',
         marginBottom: 20,
+    },
+
+    textItemCompleted: {
+        fontSize: 18,
+        textAlign: 'center',
+        marginBottom: 20,
+        textDecorationLine: 'line-through',
+        textDecorationStyle: 'solid'
     },
 
     buttonDelete: {
