@@ -14,13 +14,13 @@ const TodoItem = ({item, DeleteHandler, CompleteHandler}) => {
                 <Text style={item.isCompleted ? styles.textItemCompleted : styles.textItem}>{item.text}</Text>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.buttonComplete}
-                                      onPress={() => CompleteHandler(item.isCompleted, item.key)}
+                                      onPress={() => CompleteHandler(item.id)}
                     >
                         <Text style={styles.buttonText}>{item.isCompleted ? "Incomplete" : "Completed"}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.buttonDelete}
-                        onPress={() => DeleteHandler(item.key)}>
+                        onPress={() => DeleteHandler(item.id)}>
                         <Text style={styles.buttonText}>Delete</Text>
                     </TouchableOpacity>
                 </View>

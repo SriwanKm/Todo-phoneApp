@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         alignItems: "center",
+        justifyContent: 'center',
         marginTop: 30,
         marginBottom: 10,
         backgroundColor: "#e8e8e8",
