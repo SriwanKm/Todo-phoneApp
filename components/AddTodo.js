@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+import React from "react";
+import {StyleSheet, Text, View, TextInput, TouchableOpacity} from "react-native";
 
-const AddTodo = ({ AddTodoHandler, OnChangeHandler, text }) => {
+const AddTodo = ({AddTodoHandler, OnChangeHandler, text}) => {
 
     return (
         <View style={styles.mainContainer}>
